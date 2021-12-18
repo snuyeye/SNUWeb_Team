@@ -8,6 +8,9 @@
       "str",
       "str"
     ],
-    "contents": []
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
   },
-  ]
+]
