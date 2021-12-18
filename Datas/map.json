@@ -13,4 +13,19 @@
       { "type": "item", "item": 1, "percent": 30 }
     ]
   },
+  {
+    "id": 2,
+    "fields": [
+      0,
+      0,
+      [1,1,1,1],
+      "str",
+      "str"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+
 ]
