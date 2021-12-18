@@ -4,9 +4,246 @@
     "fields": [
       0,
       0,
+      [1,0,0,1],
+      "삼성동 고시촌 어딘가...",
+      "어라, 여긴 어디지? 고시 20수를 하고 나왔더니 세상이 많이 변했네!"
+    ],
+    [
+    ]
+  },
+  {
+    "id": 2,
+    "fields": [
+      1,
+      0,
+      [1,1,0,1],
+      "미림여고 정문",
+      "문이 활짝 열려있다. 운동장 한 가운데에 좀비 하나가 멍하니 서있다. 이게 뭐지...? 좀비??"
+    ],
+    [
+      { "type": "battle", "idNumber": 2, "percent": 50 },
+      { "type": "event", "idNumber": 2, "percentage": 30 }
+    ]
+  },
+  {
+    "id": 3,
+    "fields": [
+      2,
+      0,
+      [0,1,0,1],
+      "미림여고 벽",
+      "벽이 허물어져있다... 그 너머에 좀비가 보인다."
+    ],
+    [
+      { "type": "battle", "idNumber": 2, "percent": 70 },
+      { "type": "item", "idNumber": 2, "percent": 30 }
+    ]
+  },
+  {
+    "id": 4,
+    "fields": [
+      3,
+      0,
+      [1,0,0,1],
+      "관악 실버케어",
+      "희고 길쭉한 물체가 보이는 것 같다...!"
+    ],
+    [
+      { "type": "item", "idNumber": 4, "percent": 90 }
+    ]
+  },
+  {
+    "id": 5,
+    "fields": [
+      4,
+      0,
+      [1,1,0,1],
+      "녹두거리",
+      "추억이 새록새록 떠오른다...! 맛있는 음식을 먹을 수 있을지도??"
+    ],
+    [
+      { "type": "battle", "idNumber": 5, "percent": 10 },
+      { "type": "event", "idNumber": 5, "percentage": 70 }
+    ]
+  },
+  {
+    "id": 6,
+    "fields": [
+      5,
+      0,
+      [1,1,0,1],
+      "길 위...",
+      "좀비가 된 전공 교수님 등장!!"
+    ],
+    [
+      { "type": "battle", "idNumber": 6, "percent": 100 },
+      { "type": "item", "idNumber": 6, "percent": 30 }
+    ]
+  },
+  {
+    "id": 7,
+    "fields": [
+      6,
+      0,
+      [1,1,0,1],
+      "길 위...",
+      "음, 아무도 없군!"
+    ],
+    [
+      { "type": "battle", "idNumber": 7, "percent": 10 },
+    ]
+  },
+  {
+    "id": 8,
+    "fields": [
+      7,
+      0,
+      [1,1,0,1],
+      "삼성초등학교",
+      "어린이 친구들은 아무도 없다."
+    ],
+    [
+      { "type": "battle", "idNumber": 8, "percent": 50 },
+    ]
+  },
+  {
+    "id": 9,
+    "fields": [
+      8,
+      0,
+      [1,1,0,1],
+      "삼성고등학교",
+      "옥상에 생존자가 있고, 학교엔 좀비가 득실거린다."
+    ],
+    [
+      { "type": "battle", "idNumber": 9, "percent": 70 },
+      { "type": "item", "idNumber": 9, "percent": 30 }
+    ]
+  },
+  {
+    "id": 10,
+    "fields": [
+      9,
+      0,
+      [0,1,0,1],
+      "서울대학교 정문",
+      "샤 정문이 보인다."
+    ],
+    [
+      { "type": "event", "idNumber": 10, "percentage": 70 }
+    ]
+  },
+  {
+    "id": 11,
+    "fields": [
+      0,
+      1,
+      [1,0,1,1],
+      "미림분식",
+      "국물 떡볶이 맛집이지만, 지금은 아무것도 없다. 세상이 이상하다. 주걱 획득!"
+    ],
+    [
+      { "type": "item", "idNumber": 11, "percent": 100 }
+    ]
+  },
+  {
+    "id": 12,
+    "fields": [
+      1,
+      1,
       [1,1,1,1],
-      "str",
-      "str"
+      "미림여고 벽",
+      "허물어져있다. 쉽게 넘을 수 있다."
+    ],
+    [
+    ]
+  },
+  {
+    "id": 13,
+    "fields": [
+      2,
+      1,
+      [0,1,0,0],
+      "미림여고 내부",
+      "좀비가 득실거린다."
+    ],
+    [
+      { "type": "battle", "idNumber": 13 "percent": 95 },
+    ]
+  },
+  {
+    "id": 14,
+    "fields": [
+      3,
+      1
+      [1,0,1,1],
+      "닭꼬치 가게",
+      "1개당 2500원이나 하는 프리미엄 닭꼬치다."
+    ],
+    [
+      { "type": "item", "idNumber": 14, "percent": 50 }
+    ]
+  },
+  {
+    "id": 15,
+    "fields": [
+      4,
+      1,
+      [1,1,1,1],
+      "신림왕꼬치",
+      "양고기... 먹고싶다!!!"
+    ],
+    [
+      { "type": "event", "idNumber": 15, "percentage": 100 }
+    ]
+  },
+  {
+    "id": 16,
+    "fields": [
+      5,
+      1,
+      [1,1,1,1],
+      "신림동우체국",
+      "입구가 열려있다. 들어가볼까?"
+    ],
+    [
+    ]
+  },
+  {
+    "id": 17,
+    "fields": [
+      6,
+      1,
+      [1,1,1,1],
+      "역전할머니맥주",
+      "맥주병 들고 취한 좀비들이 많다."
+    ],
+    [
+      { "type": "battle", "idNumber": 17, "percent": 80 },
+      { "type": "item", "idNumber": 17, "percent": 30 }
+    ]
+  },
+  {
+    "id": 18,
+    "fields": [
+      7,
+      1,
+      [1,1,1,1],
+      "청룡초등학교",
+      "아쉽게도 청룡은 없다."
+    ],
+    [
+      { "type": "event", "idNumber": 18, "percentage": 5 }
+    ]
+  },
+  {
+    "id": 19,
+    "fields": [
+      8,
+      1,
+      [1,1,1,1],
+      "관악산역(경전철) 이었던 것",
+      "지어지려다가 말았다..."
     ],
     [
       { "type": "battle", "monster": 1, "percent": 70 },
@@ -14,32 +251,435 @@
     ]
   },
   {
-    "id": 2,
+    "id": 20,
     "fields": [
-      0,
-      0,
-      [1,1,1,1],
-      "str",
-      "str"
+      9,
+      1,
+      [0,1,1,1],
+      "5511 (폐)버스정류장",
+      "버스는 더 이상 오지 않는다."
     ],
     [
       { "type": "battle", "monster": 1, "percent": 70 },
       { "type": "item", "item": 1, "percent": 30 }
     ]
   },
- {
-    "id": 51,
+  {
+    "id": 21,
     "fields": [
       0,
-      0,
-      [1,1,1,1],
-      "str",
-      "str"
+      2,
+      [1,0,1,1],
+      "삼성동 주민센터",
+      "유리창이 다 깨져있고, 공무원들은 안 보인다."
     ],
     [
       { "type": "battle", "monster": 1, "percent": 70 },
       { "type": "item", "item": 1, "percent": 30 }
     ]
   },
-
+  {
+    "id": 22,
+    "fields": [
+      1,
+      2,
+      [1,1,1,1],
+      "빽다방",
+      "빽스치노는 못참아"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 23,
+    "fields": [
+      2,
+      2,
+      [1,1,1,1],
+      "짓다 만 서림역",
+      "폐허가 된 서림역이 보인다. 들어가볼까?"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 24,
+    "fields": [
+      3,
+      2,
+      [0,1,0,1],
+      "짓다 만 서림역",
+      "여기저기 건축자재들이 널려 있다. 으스스하다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 25,
+    "fields": [
+      4,
+      2,
+      [1,0,1,1],
+      "도림천",
+      "졸졸졸..."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 26,
+    "fields": [
+      5,
+      2,
+      [0,0,1,0],
+      "신림동우체국",
+      "벽에 이상한 낙서들이 그려져있다. 무엇을 의미하는 걸까?"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 27,
+    "fields": [
+      6,
+      2,
+      [1,0,1,1],
+      "컵밥",
+      "주인장이 만들다 만 컵밥이 보인다. 아마 좀비를 피해 숨은 것 같다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 28,
+    "fields": [
+      7,
+      2,
+      [1,1,1,1],
+      "ㅁㅁㅁ변호사",
+      "부럽군..."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 29,
+    "fields": [
+      8,
+      2,
+      [1,1,1,1],
+      "대학원생 좀비다!",
+      "화나있다! 높은 확률로 싸워야 한다!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 30,
+    "fields": [
+      9,
+      2,
+      [0,1,1,1],
+      "서울대학교 치과병원",
+      "치실 획득! 건강한 치아를 얻었다!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 31,
+    "fields": [
+      0,
+      3,
+      [1,0,1,1],
+      "신신림시장",
+      "할머니 바지 획득!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 32,
+    "fields": [
+      1,
+      3,
+      [1,1,1,1],
+      "하수구",
+      "으아아악! 하수구에 빠졌다!!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 33,
+    "fields": [
+      2,
+      3,
+      [1,0,1,0],
+      "짓다 만 서림역",
+      "지하로 내려갈 수 있을까? 길이 있을 것 같다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 34,
+    "fields": [
+      3,
+      3,
+      [0,1,1,0],
+      "짓다 만 서림역",
+      "엄청난 좀비 소굴이다. 진짜 험난한 전투가 예상된다!!!!! 으아아악!!!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 35,
+    "fields": [
+      4,
+      3,
+      [1,0,1,1],
+      "서울신성고등학교",
+      "이 고등학교엔 아무도 없는 것 같다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 36,
+    "fields": [
+      5,
+      3,
+      [1,1,0,1],
+      "롯데리아",
+      "아무리 배고파도 여긴 아니다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 37,
+    "fields": [
+      6,
+      3,
+      [1,1,1,1],
+      "약국",
+      "뭔가 도움이 되는 게 있지 않을까?"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 38,
+    "fields": [
+      7,
+      3,
+      [1,1,1,1],
+      "치매안심센터",
+      "나도 이제 치매가 올 나이가 되었지.."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 39,
+    "fields": [
+      8,
+      3,
+      [1,1,1,1],
+      "한솥도시락",
+      "갓성비의 한솥도시락. 나의 20년을 책임졌다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 40,
+    "fields": [
+      9,
+      3,
+      [0,1,1,1],
+      "언덕",
+      "서울대 다닐 때 운동 겸 자주 뛰어다녔던 언덕... 추억이군."
+    ],
+    [
+    ]
+  },
+  {
+    "id": 41,
+    "fields": [
+      0,
+      4,
+      [1,0,1,1],
+      "신림현대아파트",
+      "사람이 보이지 않는다..."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 42,
+    "fields": [
+      1,
+      4,
+      [1,1,1,1],
+      "스터디 카페",
+      "연필 한 자루 획득! 호신용으로 좋아보인다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 43,
+    "fields": [
+      2,
+      4,
+      [1,1,0,1],
+      "마른 하늘에 날벼락",
+      "우르릉쾅쾅!! 하늘에서 갑자기 벼락 맞음!!!"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 44,
+    "fields": [
+      3,
+      4,
+      [1,1,0,1],
+      "대학동 주민센터",
+      "아직 건물이 튼튼하다... 내부에 사람들이 있을까?"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 45,
+    "fields": [
+      4,
+      4,
+      [1,1,1,1],
+      "햇살병원",
+      "의사 선생님이 계시다! hp 회복 가능"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 46,
+    "fields": [
+      5,
+      4,
+      [1,1,1,1],
+      "GS25",
+      "썩은 삼각김밥이 보인다. 그 주변에 기어다니는 건 뭐지? (바퀴벌레)"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 47,
+    "fields": [
+      6,
+      4,
+      [1,1,1,1],
+      "OOO 고시원",
+      "아직도 불이 켜져있다. 불쌍한 친구들... 세상이 이런 걸 알까?"
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 48,
+    "fields": [
+      7,
+      4,
+      [1,1,1,1],
+      "야생 좀비 멧돼지 출현!",
+      "삽겹살 파티다!!"
+    ],
+    [
+      { "type": "battle", "monster": 48, "percent": 100 },
+      { "type": "item", "item": 48, "percent": 100 }
+    ]
+  },
+  {
+    "id": 49,
+    "fields": [
+      8,
+      4,
+      [1,1,1,1],
+      "관악 경찰서",
+      "경찰서가 보인다. 왠지 안심이 된다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
+  {
+    "id": 50,
+    "fields": [
+      9,
+      4,
+      [0,1,1,1],
+      "서울여상",
+      "옥상에 학생들이 보인다. 학교 주위에 좀비가 득실거린다."
+    ],
+    [
+      { "type": "battle", "monster": 1, "percent": 70 },
+      { "type": "item", "item": 1, "percent": 30 }
+    ]
+  },
 ]
