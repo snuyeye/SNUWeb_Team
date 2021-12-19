@@ -519,7 +519,6 @@
       "지하로를 따라 서울대입구역까지 빠르게 이동할 수 있다."
     ],
     [
-      { "type": "event", "idNumber": 91, "percent": 30 }
       { "type": "item", "idNumber": 91, "percent": 100 }
     ]
   },
