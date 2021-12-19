@@ -13,7 +13,7 @@ app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
 
 mongoose.connect(
-    "mongodb+srv://tester123:tester123@cluster0.ye4cg.mongodb.net/myFirstDatabase?",
+    "mongodb+srv://test0:test0@cluster0.flaec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
