@@ -18,7 +18,7 @@
       0,
       [1,1,0,1],
       "미림여고 정문",
-      "문이 활짝 열려있다. 운동장 한 가운데에 좀비 하나가 멍하니 서있다. 이게 뭐지...? 좀비??"
+      "북동쪽에 미림여고가 보인다. 문이 활짝 열려있다. 운동장 한 가운데에 좀비 하나가 멍하니 서있다. 이게 뭐지...? 좀비??"
     ],
     [
       { "type": "battle", "idNumber": 2, "percent": 50 },
@@ -32,7 +32,7 @@
       0,
       [0,1,0,1],
       "미림여고 벽",
-      "벽이 허물어져있다... 그 너머에 좀비가 보인다."
+      "북쪽에 미림여고가 보인다. 벽이 허물어져있다... 그 너머에 좀비가 보인다."
     ],
     [
       { "type": "battle", "idNumber": 2, "percent": 70 },
@@ -153,7 +153,7 @@
       1,
       [1,1,1,1],
       "미림여고 벽",
-      "허물어져있다. 쉽게 넘을 수 있다."
+      "동쪽에 미림여고가 보인다. 허물어져있다. 쉽게 넘을 수 있다."
     ],
     [
     ]
@@ -203,8 +203,8 @@
       5,
       1,
       [1,1,1,1],
-      "신림동우체국",
-      "입구가 열려있다. 들어가볼까?"
+      "신림동 우체국",
+      "북쪽에 신림동 우체국이 있다. 입구가 열려있다. 들어가볼까?"
     ],
     [
     ]
@@ -246,8 +246,7 @@
       "지어지려다가 말았다..."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "idNumber": 19, "percent": 55 }
     ]
   },
   {
@@ -260,8 +259,7 @@
       "버스는 더 이상 오지 않는다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 20, "percent": 70 },
     ]
   },
   {
@@ -274,8 +272,8 @@
       "유리창이 다 깨져있고, 공무원들은 안 보인다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 21, "percent": 80 },
+      { "type": "item", "idNumber": 21, "percent": 20 }
     ]
   },
   {
@@ -288,8 +286,7 @@
       "빽스치노는 못참아"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 22, "percentage": 85 }
     ]
   },
   {
@@ -297,13 +294,11 @@
     "fields": [
       2,
       2,
-      [1,1,1,1],
-      "짓다 만 서림역",
-      "폐허가 된 서림역이 보인다. 들어가볼까?"
+      [1,1,0,1],
+      "짓다 만 서림역 입구",
+      "북동쪽에 폐허가 된 서림역이 보인다. 들어가볼까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -313,11 +308,11 @@
       2,
       [0,1,0,1],
       "짓다 만 서림역",
-      "여기저기 건축자재들이 널려 있다. 으스스하다."
+      "북쪽에 서림역 내부가 보인다. 여기저기 건축자재들이 널려 있다. 으스스하다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 24, "percent": 40 },
+      { "type": "item", "idNumber": 24, "percent": 60 }
     ]
   },
   {
@@ -330,8 +325,7 @@
       "졸졸졸..."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 25, "percentage": 10 }
     ]
   },
   {
@@ -340,12 +334,11 @@
       5,
       2,
       [0,0,1,0],
-      "신림동우체국",
+      "신림동 우체국",
       "벽에 이상한 낙서들이 그려져있다. 무엇을 의미하는 걸까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 26, "percentage": 90 }
     ]
   },
   {
@@ -358,8 +351,7 @@
       "주인장이 만들다 만 컵밥이 보인다. 아마 좀비를 피해 숨은 것 같다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 27, "percentage": 30 }
     ]
   },
   {
@@ -372,8 +364,6 @@
       "부럽군..."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -386,8 +376,8 @@
       "화나있다! 높은 확률로 싸워야 한다!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 29, "percent": 99 },
+      { "type": "item", "idNumber": 29, "percent": 50 }
     ]
   },
   {
@@ -400,8 +390,7 @@
       "치실 획득! 건강한 치아를 얻었다!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 30, "percentage": 100 }
     ]
   },
   {
@@ -414,8 +403,7 @@
       "할머니 바지 획득!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "item": 31, "percent": 100 }
     ]
   },
   {
@@ -423,13 +411,12 @@
     "fields": [
       1,
       3,
-      [1,1,1,1],
+      [0,1,1,1],
       "하수구",
       "으아아악! 하수구에 빠졌다!!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 32, "percentage": 100 }
     ]
   },
   {
@@ -439,11 +426,9 @@
       3,
       [1,0,1,0],
       "짓다 만 서림역",
-      "지하로 내려갈 수 있을까? 길이 있을 것 같다."
+      "동쪽에 서림역 내부가 보인다. 지하로 내려갈 수 있을까? 길이 있을 것 같다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -452,12 +437,12 @@
       3,
       3,
       [0,1,1,0],
-      "짓다 만 서림역",
-      "엄청난 좀비 소굴이다. 진짜 험난한 전투가 예상된다!!!!! 으아아악!!!"
+      "짓다 만 서림역 내부",
+      "엄청난 좀비 소굴이다. 험난한 전투가 예상된다!!!!! 으아아악!!!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 34, "percent": 99 },
+      { "type": "item", "idNumber": 34, "percent": 80 }
     ]
   },
   {
@@ -470,8 +455,7 @@
       "이 고등학교엔 아무도 없는 것 같다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "idNumber": 35, "percent": 50 }
     ]
   },
   {
@@ -484,8 +468,6 @@
       "아무리 배고파도 여긴 아니다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -498,8 +480,7 @@
       "뭔가 도움이 되는 게 있지 않을까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 37, "percent": 90 }
     ]
   },
   {
@@ -512,8 +493,7 @@
       "나도 이제 치매가 올 나이가 되었지.."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 38, "percent": 20 }
     ]
   },
   {
@@ -526,8 +506,7 @@
       "갓성비의 한솥도시락. 나의 20년을 책임졌다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 39, "percent": 30 },
     ]
   },
   {
@@ -552,8 +531,6 @@
       "사람이 보이지 않는다..."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -566,8 +543,7 @@
       "연필 한 자루 획득! 호신용으로 좋아보인다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "idNumber": 42, "percent": 100 }
     ]
   },
   {
@@ -580,8 +556,7 @@
       "우르릉쾅쾅!! 하늘에서 갑자기 벼락 맞음!!!"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 43, "percent": 100 }
     ]
   },
   {
@@ -594,8 +569,6 @@
       "아직 건물이 튼튼하다... 내부에 사람들이 있을까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -608,8 +581,7 @@
       "의사 선생님이 계시다! hp 회복 가능"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "event", "idNumber": 45, "percent": 100 }
     ]
   },
   {
@@ -622,8 +594,7 @@
       "썩은 삼각김밥이 보인다. 그 주변에 기어다니는 건 뭐지? (바퀴벌레)"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "idNumber": 46, "percent": 30 }
     ]
   },
   {
@@ -636,8 +607,6 @@
       "아직도 불이 켜져있다. 불쌍한 친구들... 세상이 이런 걸 알까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
     ]
   },
   {
@@ -650,8 +619,7 @@
       "삽겹살 파티다!!"
     ],
     [
-      { "type": "battle", "monster": 48, "percent": 100 },
-      { "type": "item", "item": 48, "percent": 100 }
+      { "type": "battle", "idNumber": 48, "percent": 100 },
     ]
   },
   {
@@ -660,12 +628,11 @@
       8,
       4,
       [1,1,1,1],
-      "관악 경찰서",
-      "경찰서가 보인다. 왠지 안심이 된다."
+      "관악 경찰서 입구",
+      "북쪽에 경찰서가 보인다. 왠지 안심이 된다. 들어가볼까?"
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "item", "idNumber": 49, "percent": 5 }
     ]
   },
   {
@@ -678,8 +645,7 @@
       "옥상에 학생들이 보인다. 학교 주위에 좀비가 득실거린다."
     ],
     [
-      { "type": "battle", "monster": 1, "percent": 70 },
-      { "type": "item", "item": 1, "percent": 30 }
+      { "type": "battle", "idNumber": 50, "percent": 10 },
     ]
   },
 ]
