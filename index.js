@@ -3,7 +3,7 @@ const fs = require("fs");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 
-const { constantManager, mapManager } = require("./datas/Manager");
+const { constantManager, mapManager } = require("./Datas/Manager");
 const { Player } = require("./models/Player");
 
 const app = express();
@@ -16,7 +16,10 @@ mongoose.connect(
     "mongodb+srv://test0:test0@cluster0.flaec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
 );
-
+const eventData = JSON.parse(fs.readFileSync(__dirname + "/Datas/events.json"));
+const battleData = JSON.parse(fs.readFileSync(__dirname + "/Datas/monsters.json"));
+const itemData = JSON.parse(fs.readFileSync(__dirname + "/Datas/items.json"));
+//console.log(eventData.data[0])
 const authentication = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) return res.sendStatus(401);
@@ -85,31 +88,51 @@ app.post("/action", authentication, async (req, res) => {
         } else {
             res.sendStatus(400);
         }
+
         field = mapManager.getField(x, y);
         if (!field) res.sendStatus(400);
         player.x = x;
         player.y = y;
-
         const events = field.events;
+
         const actions = [];
         if (events.length > 0) {
             // TODO : 확률별로 이벤트 발생하도록 변경
-            const _event = events[0];
-            if (_event.type === "battle") {
+            let eventRandom = Math.random()*100;
+            let cumNum = 0;
+            let _event = 0;
+            let event = 0;
+            for (i=0;i<events.length;i++){
+                cumNum += events[i].percent;
+                console.log(eventRandom, cumNum)
+                if (eventRandom < cumNum) {
+                    _event = events[i];
+                    break;
+                } else if (i === events.length-1){
+                    _event = 0;
+                    event = { description: "아무 일도 일어나지 않았다." };
+                }
+            }
+            //const _event = events[0];
+            if (_event.type === "event") {
                 // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
 
-                event = { description: "늑대와 마주쳐 싸움을 벌였다." };
-                player.incrementHP(-1);
+                event = { description: eventData[_event.idNumber].content };
+                if (Object.keys(_event)[2] === "hp"){
+                    player.incrementHP(_event.hp);
+                } else if (Object.keys(_event)[2] === "str") {
+                    player.incrementSTR(_event.str);
+                } else if (Object.keys(_event)[2] === "exp") {
+                    player.incrementEXP(_event.exp);
+                };
             } else if (_event.type === "item") {
                 event = { description: "포션을 획득해 체력을 회복했다." };
                 player.incrementHP(1);
                 player.HP = Math.min(player.maxHP, player.HP + 1);
             }
         }
-
         await player.save();
     }
-
     field.canGo.forEach((direction, i) => {
         if (direction === 1) {
             actions.push({
@@ -118,6 +141,7 @@ app.post("/action", authentication, async (req, res) => {
                 params: { direction: i, action: "move" }
             });
         }
+
     });
 
     return res.send({ player, field, event, actions });
