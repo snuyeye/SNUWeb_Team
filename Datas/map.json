@@ -7,7 +7,7 @@
       [1,0,0,1],
       "삼성동 고시촌 어딘가...",
       "어라, 여긴 어디지? 고시 20수를 하고 나왔더니 세상이 많이 변했네!"
-    ],"events": 
+    ],"events":
   [
   ]
   },
@@ -22,7 +22,7 @@
     ],"events":
   [
     { "type": "battle", "idNumber": 2, "percent": 50 },
-    { "type": "event", "idNumber": 2, "percentage": 30 }
+    { "type": "event", "idNumber": 2, "percent": 30 }
   ]
   },
   {
@@ -63,7 +63,7 @@
     ],"events":
   [
     { "type": "battle", "idNumber": 5, "percent": 10 },
-    { "type": "event", "idNumber": 5, "percentage": 70 }
+    { "type": "event", "idNumber": 5, "percent": 70 }
   ]
   },
   {
@@ -130,7 +130,7 @@
       "샤 정문이 보인다."
     ],"events":
   [
-    { "type": "event", "idNumber": 10, "percentage": 70 }
+    { "type": "event", "idNumber": 10, "percent": 70 }
   ]
   },
   {
@@ -194,7 +194,7 @@
       "양고기... 먹고싶다!!!"
     ],"events":
   [
-    { "type": "event", "idNumber": 15, "percentage": 100 }
+    { "type": "event", "idNumber": 15, "percent": 100 }
   ]
   },
   {
@@ -233,7 +233,7 @@
       "아쉽게도 청룡은 없다."
     ],"events":
   [
-    { "type": "event", "idNumber": 18, "percentage": 5 }
+    { "type": "event", "idNumber": 18, "percent": 5 }
   ]
   },
   {
@@ -286,7 +286,7 @@
       "빽스치노는 못참아"
     ],"events":
   [
-    { "type": "event", "idNumber": 22, "percentage": 85 }
+    { "type": "event", "idNumber": 22, "percent": 85 }
   ]
   },
   {
@@ -325,7 +325,7 @@
       "졸졸졸..."
     ],"events":
   [
-    { "type": "event", "idNumber": 25, "percentage": 10 }
+    { "type": "event", "idNumber": 25, "percent": 10 }
   ]
   },
   {
@@ -338,7 +338,7 @@
       "벽에 이상한 낙서들이 그려져있다. 무엇을 의미하는 걸까?"
     ],"events":
   [
-    { "type": "event", "idNumber": 26, "percentage": 90 }
+    { "type": "event", "idNumber": 26, "percent": 90 }
   ]
   },
   {
@@ -351,7 +351,7 @@
       "주인장이 만들다 만 컵밥이 보인다. 아마 좀비를 피해 숨은 것 같다."
     ],"events":
   [
-    { "type": "event", "idNumber": 27, "percentage": 30 }
+    { "type": "event", "idNumber": 27, "percent": 30 }
   ]
   },
   {
@@ -390,7 +390,7 @@
       "치실 획득! 건강한 치아를 얻었다!"
     ],"events":
   [
-    { "type": "event", "idNumber": 30, "percentage": 100 }
+    { "type": "event", "idNumber": 30, "percent": 100 }
   ]
   },
   {
@@ -416,7 +416,7 @@
       "으아아악! 하수구에 빠졌다!!"
     ],"events":
   [
-    { "type": "event", "idNumber": 32, "percentage": 100 }
+    { "type": "event", "idNumber": 32, "percent": 100 }
   ]
   },
   {
