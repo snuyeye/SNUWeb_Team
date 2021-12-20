@@ -20,6 +20,16 @@ schema.methods.incrementHP = function (val) {
     this.HP = Math.min(Math.max(0, hp), this.maxHP);
 };
 
+schema.methods.incrementSTR = function (val) {
+    const str = this.str + val;
+    this.str = Math.max(0, str);
+};
+
+schema.methods.incrementEXP = function (val) {
+    const exp = this.exp + val;
+    this.exp = Math.max(0, exp);
+};
+
 const Player = mongoose.model("Player", schema);
 
 module.exports = {
