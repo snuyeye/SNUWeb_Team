@@ -36,11 +36,15 @@
 <div id="status">
     -----Status-----
     <br>
+    LEVEL: <span id="LEVEL"> 1</span>
+    <br>
     HP: <span id="HP"> 5 / 5</span>
     <br>
     STR: <span id="STR"> 5</span>
     <br>
     DEF: <span id="DEF"> 5</span>
+    <br>
+    EXP: <span id="EXP"> 0 / 10</span>
     <br>
     -----------------
 </div>
@@ -102,6 +106,8 @@
             $('#HP').text(`${player.HP} / ${player.maxHP}`)
             $('#STR').text(`${player.str}`)
             $('#DEF').text(`${player.def}`)
+            $('#LEVEL').text(`${player.level}`)
+            $('#EXP').text(`${player.exp} / ${player.maxExp}`)
         });
 
     }
