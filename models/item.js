@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     itemId: Number,
-    user: { type: Schema.Types.ObjectId, ref: "User" }
+    user: { type: Schema.Types.ObjectId, ref: "Player" }
 });
 
-const User = mongoose.model("User", schema);
+const Player = mongoose.model("Player", schema);
 
 module.exports = {
-    User
+    Player
 };
