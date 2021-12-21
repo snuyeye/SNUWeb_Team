@@ -34,6 +34,8 @@ schema.methods.incrementEXP = function (val) {
         this.exp -= this.maxExp
         this.str +=1;
         this.def +=1;
+        this.HP +=1;
+        this.maxHP +=1;
     }
 };
 
