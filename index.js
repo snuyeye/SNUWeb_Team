@@ -5,6 +5,7 @@ const crypto = require("crypto");
 
 const { constantManager, mapManager } = require("./Datas/Manager");
 const { Player } = require("./models/Player");
+const { Item } = require("./models/item");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +20,6 @@ mongoose.connect(
 const eventData = JSON.parse(fs.readFileSync(__dirname + "/Datas/events.json"));
 const battleData = JSON.parse(fs.readFileSync(__dirname + "/Datas/monsters.json"));
 const itemData = JSON.parse(fs.readFileSync(__dirname + "/Datas/items.json"));
-//console.log(eventData.data[0])
 const authentication = async (req, res, next) => {
     const { authorization } = req.headers;
     if (!authorization) return res.sendStatus(401);
@@ -115,13 +115,11 @@ app.post("/action", authentication, async (req, res) => {
                     event = { description: "아무일도 일어나지 않았다." };
                 }
             }
-            console.log(event, 'asdfasdf')
-            console.log(_event)
             //const _event = events[0];
             if (_event.type === "event") {
                 // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
-                let content = 'asdf';
-                eventData.data.forEach(json => json.id === _event.idNumber? content = json.content : 1);
+                //let content = 'asdf';
+                //eventData.data.forEach(json => json.id === _event.idNumber? content = json.content : 1);
                 let idJson = '';
                 eventData.data.forEach(json => json.id === _event.idNumber? idJson = json : 1);
 
@@ -134,16 +132,18 @@ app.post("/action", authentication, async (req, res) => {
                         player.exp = 0;
                         player.HP = player.maxHP;
                     }
-                    break;
                 } else if (Object.keys(idJson)[2] === "str") {
                     player.incrementSTR(idJson.str);
                 } else if (Object.keys(idJson)[2] === "exp") {
                     player.incrementEXP(idJson.exp);
                 };
             } else if (_event.type === "item") {
-                event = { description: "포션을 획득해 체력을 회복했다." };
-                player.incrementHP(1);
-                player.HP = Math.min(player.maxHP, player.HP + 1);
+                let idJson = '';
+                itemData.data.forEach(json => json.id === _event.idNumber? idJson = json : 1);
+                event = { description: `${idJson.name}을 획득했다!` };
+                const newItem = new Item({itemId: idJson.id, player});
+                await newItem.save();
+
             }
         }
         await player.save();
@@ -157,7 +157,12 @@ app.post("/action", authentication, async (req, res) => {
             });
         }
     });
-    return res.send({ player, field, event, actions });
+    const items = await Item.find({ player });
+    let itemsTotal = [];
+    console.log(items)
+    items.forEach(item => itemData.data.forEach(eachItem => eachItem.id === item.itemId? itemsTotal.push(eachItem): 1))
+    console.log(itemsTotal)
+    return res.send({ player, field, event, actions, itemsTotal });
 
 });
 
