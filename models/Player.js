@@ -14,7 +14,8 @@ const schema = new Schema({
     def: { type: Number, default: 5 },
     exp: { type: Number, default: 0 },
     x: { type: Number, default: 0 },
-    y: { type: Number, default: 0 }
+    y: { type: Number, default: 0 },
+    items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
 });
 schema.methods.incrementHP = function (val) {
     const hp = this.HP + val;
@@ -34,8 +35,8 @@ schema.methods.incrementEXP = function (val) {
         this.exp -= this.maxExp
         this.str +=1;
         this.def +=1;
-        this.HP +=1;
         this.maxHP +=1;
+        this.HP +=1;
     }
 };
 
