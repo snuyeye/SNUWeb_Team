@@ -6,8 +6,8 @@ const schema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: "Player" }
 });
 
-const Player = mongoose.model("Player", schema);
+const Item = mongoose.model("Item", schema);
 
 module.exports = {
-    Player
+    Item
 };
