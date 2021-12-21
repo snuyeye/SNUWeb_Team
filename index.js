@@ -57,6 +57,7 @@ app.post("/signup", async (req, res) => {
         y: 0
     });
 
+
     const key = crypto.randomBytes(24).toString("hex");
     player.key = key;
 
@@ -74,17 +75,17 @@ app.post("/action", authentication, async (req, res) => {
     if (action === "query") {
         field = mapManager.getField(req.player.x, req.player.y);
     } else if (action === "move") {
-        const direction = parseInt(req.body.direction, 0); // 0 북. 1 동 . 2 남. 3 서.
+        const direction = parseInt(req.body.direction, 0); // 0 동. 1 서 . 2 남. 3 북.
         let x = req.player.x;
         let y = req.player.y;
         if (direction === 0) {
-            y -= 1;
-        } else if (direction === 1) {
             x += 1;
-        } else if (direction === 2) {
-            y += 1;
-        } else if (direction === 3) {
+        } else if (direction === 1) {
             x -= 1;
+        } else if (direction === 2) {
+            y -= 1;
+        } else if (direction === 3) {
+            y += 1;
         } else {
             res.sendStatus(400);
         }
@@ -101,12 +102,11 @@ app.post("/action", authentication, async (req, res) => {
             let eventRandom = Math.random()*100;
             let cumNum = 0;
             let _event = 0;
-            let event = 0;
             for (i=0;i<events.length;i++){
                 cumNum += events[i].percent;
-                console.log(eventRandom, cumNum)
                 if (eventRandom < cumNum) {
                     _event = events[i];
+                    eventData.data.forEach(json => json.id === _event.idNumber? event = { description: json.content } : 1);
                     break;
                 } else if (i === events.length-1){
                     _event = 0;
@@ -116,14 +116,18 @@ app.post("/action", authentication, async (req, res) => {
             //const _event = events[0];
             if (_event.type === "event") {
                 // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
+                let content = 'asdf';
+                eventData.data.forEach(json => json.id === _event.idNumber? content = json.content : 1);
+                let idJson = '';
+                eventData.data.forEach(json => json.id === _event.idNumber? idJson = json : 1);
 
-                event = { description: eventData[_event.idNumber].content };
-                if (Object.keys(_event)[2] === "hp"){
-                    player.incrementHP(_event.hp);
-                } else if (Object.keys(_event)[2] === "str") {
-                    player.incrementSTR(_event.str);
-                } else if (Object.keys(_event)[2] === "exp") {
-                    player.incrementEXP(_event.exp);
+                //event = { description: content};
+                if (Object.keys(idJson)[2] === "hp"){
+                    player.incrementHP(idJson.hp);
+                } else if (Object.keys(idJson)[2] === "str") {
+                    player.incrementSTR(idJson.str);
+                } else if (Object.keys(idJson)[2] === "exp") {
+                    player.incrementEXP(idJson.exp);
                 };
             } else if (_event.type === "item") {
                 event = { description: "포션을 획득해 체력을 회복했다." };
@@ -141,10 +145,9 @@ app.post("/action", authentication, async (req, res) => {
                 params: { direction: i, action: "move" }
             });
         }
-
     });
-
     return res.send({ player, field, event, actions });
+
 });
 
 app.listen(3000);
