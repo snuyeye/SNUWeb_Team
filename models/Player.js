@@ -5,13 +5,14 @@ const schema = new Schema({
     name: String,
     key: String,
 
-    level: Number,
-    exp: Number,
+    level: { type: Number, default: 1 },
 
     maxHP: { type: Number, default: 10 },
+    maxExp: { type: Number, default: 10 },
     HP: { type: Number, default: 10 },
     str: { type: Number, default: 5 },
     def: { type: Number, default: 5 },
+    exp: { type: Number, default: 0 },
     x: { type: Number, default: 0 },
     y: { type: Number, default: 0 }
 });
@@ -28,6 +29,12 @@ schema.methods.incrementSTR = function (val) {
 schema.methods.incrementEXP = function (val) {
     const exp = this.exp + val;
     this.exp = Math.max(0, exp);
+    if (this.exp >= this.maxExp){
+        this.level +=1;
+        this.exp -= this.maxExp
+        this.str +=1;
+        this.def +=1;
+    }
 };
 
 const Player = mongoose.model("Player", schema);
