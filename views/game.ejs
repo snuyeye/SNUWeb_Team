@@ -8,28 +8,53 @@
 
 <body>
 <div id="position"></div>
+<div id="map1"></div>
+<div id="map2"></div>
+<div id="map3"></div>
+<div id="map4"></div>
+<div id="map5"></div>
+<div id="map6"></div>
+<div id="map7"></div>
+<div id="map8"></div>
+<div id="map9"></div>
+<div id="map10"></div>
 
-<div id="status">
-    HP: <span id="HP"> 5 / 5</span>
-</div>
+<br>
+<hr>
+<br>
 <div id="game"></div>
 <div id="event_result"></div>
 <div id="control">
-    <button value="1">동</button>
-    <button value="3">서</button>
+    <button value="0">동</button>
+    <button value="1">서</button>
     <button value="2">남</button>
-    <button value="0">북</button>
+    <button value="3">북</button>
+</div>
+<br>
+<hr>
+<br>
+<div id="status">
+    -----Status-----
+    <br>
+    HP: <span id="HP"> 5 / 5</span>
+    <br>
+    STR: <span id="STR"> 5</span>
+    <br>
+    DEF: <span id="DEF"> 5</span>
+    <br>
+    -----------------
 </div>
 
 <script>
 
     const sendAction = (url, params = {}) => {
         $.ajax({
-            url,
+            url : "/action",
             headers: {
                 Authorization: "Bearer " + key
             },
             method: "POST",
+            //data: `action=${action} & direction=${params.direction}` //
             data: $.param(params),
         }).done((req) => {
             const { player, field, event, actions } = req;
@@ -38,10 +63,29 @@
             $('#position').text(`(${field.x},${field.y})`);
             const x = field.x;
             const y = field.y;
+            let map = ''
+            for (i=0;i<10;i++){
+                map = ''
+                if (i === 9-y){
+                    for (j=0;j<10;j++) {
+                        if (j === x) {
+                            map += '■'
+                        } else {
+                            map += '□'
+                        }
+                    }
+                    $(`#map${i+1}`).text(map);
+                }else {
+                    map += `□□□□□□□□□□`
+                    $(`#map${i+1}`).text(map);
+                }
+            }
+            $('#map').text(map);
+
 
             $('#control').html('');
             req.actions.forEach((action) => {
-                const dom = $('<button></button');
+                const dom = $('<button></button>');
                 dom.text(action.text);
                 dom.bind('click', function () {
                     sendAction(action.url, action.params);
@@ -55,8 +99,9 @@
             } else {
                 $('#event_result').text("아무일도 일어나지 않았다.");
             }
-
             $('#HP').text(`${player.HP} / ${player.maxHP}`)
+            $('#STR').text(`${player.str}`)
+            $('#DEF').text(`${player.def}`)
         });
 
     }
