@@ -106,13 +106,17 @@ app.post("/action", authentication, async (req, res) => {
                 cumNum += events[i].percent;
                 if (eventRandom < cumNum) {
                     _event = events[i];
-                    eventData.data.forEach(json => json.id === _event.idNumber? event = { description: json.content } : 1);
+                    if (_event.type === 'event') {
+                        eventData.data.forEach(json => json.id === _event.idNumber ? event = {description: json.content} : 1);
+                    }
                     break;
                 } else if (i === events.length-1){
                     _event = 0;
-                    event = { description: "아무 일도 일어나지 않았다." };
+                    event = { description: "아무일도 일어나지 않았다." };
                 }
             }
+            console.log(event, 'asdfasdf')
+            console.log(_event)
             //const _event = events[0];
             if (_event.type === "event") {
                 // TODO: 이벤트 별로 events.json 에서 불러와 이벤트 처리
