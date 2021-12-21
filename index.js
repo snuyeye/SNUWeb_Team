@@ -128,6 +128,13 @@ app.post("/action", authentication, async (req, res) => {
                 //event = { description: content};
                 if (Object.keys(idJson)[2] === "hp"){
                     player.incrementHP(idJson.hp);
+                    if(player.HP <= 0){
+                        player.x = 0;
+                        player.y = 0;
+                        player.exp = 0;
+                        player.HP = player.maxHP;
+                    }
+                    break;
                 } else if (Object.keys(idJson)[2] === "str") {
                     player.incrementSTR(idJson.str);
                 } else if (Object.keys(idJson)[2] === "exp") {
