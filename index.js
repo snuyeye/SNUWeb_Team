@@ -83,7 +83,7 @@ app.post("/action", authentication, async (req, res) => {
         let {fightNumber, monster} = req.body;
         fightNumber++;
         player.hp -= parseFloat(monster.str) / parseFloat(player.def);
-        currentMonsterHP -= parseFloat(player.str) / parseFloat(monster.def) * 3;//뒤에 붙는 숫자로 난이도 조절
+        monster.hp -= parseFloat(player.str) / parseFloat(monster.def) * 3;//뒤에 붙는 숫자로 난이도 조절
         if(monster.hp <= 0) {
             monster.hp = 0;
             monster.str = 0;
