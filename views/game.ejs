@@ -118,6 +118,21 @@
 
                 $('#control').append(dom);
             })
+            
+            if (x === 0 && y === -1) {
+                    $('button[value="-1"]').unbind('click');
+                    $('button[value="-1"]').show();
+                    if (player.resetCount > 4) {
+                        $('button[value="-1"]').hide();
+                    }
+                    $('button[value="-1"]').bind('click', function () {
+                        sendAction('restat');
+                    })
+            } else {
+                    $('button[value="-1"]').hide();
+                    $('button[value="-1"]').unbind('click');
+            }
+            
 
             if (event) {
                 $('#event_result').text(event.description);
