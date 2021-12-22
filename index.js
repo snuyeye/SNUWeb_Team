@@ -103,6 +103,19 @@ app.post("/action", authentication, async (req, res) => {
         await monster.save();
     } else if(action === "run") {
 
+    } else if (action === "restat") {
+        field = mapManager.getField(0, -1);
+        player.maxHP = Math.round(10 * Math.random() + 5);
+        player.str = Math.round(4 * Math.random() + 3);
+        player.def = Math.round(4 * Math.random() + 3);
+        player.HP = player.maxHP;
+        const resetCount = player.incrementCOUNT();
+        event = {
+        title: "",
+        description: `스탯이 재분배되었습니다. ( 재분배 가능횟수 : ${resetCount}/5 ) `
+        };
+
+        await player.save();
     } else if (action === "move") {
         const direction = parseInt(req.body.direction, 0); // 0 동. 1 서 . 2 남. 3 북.
         let x = req.player.x;
