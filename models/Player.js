@@ -15,7 +15,7 @@ const schema = new Schema({
     def: { type: Number, default: 5 },
     exp: { type: Number, default: 0 },
     x: { type: Number, default: 0 },
-    y: { type: Number, default: 0 },
+    y: { type: Number, default: -1 },
     items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
 });
 schema.methods.incrementHP = function (val) {
