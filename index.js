@@ -139,20 +139,31 @@ app.post("/action", authentication, async (req, res) => {
                 };
             } else if (_event.type === "item") {
                 let idJson = '';
-                itemData.data.forEach(json => json.id === _event.idNumber? idJson = json : 1);
-                event = { description: `${idJson.name}을 획득했다!` };
+                itemData.data.forEach(json => json.id === _event.idNumber ? idJson = json : 1);
+                event = {description: `${idJson.name}을 획득했다!`};
                 const newItem = new Item({itemId: idJson.id, player});
                 await newItem.save();
 
+            } else if (_event.type === "battle") {
+                let idJson = '';
+                battleData.data.forEach(json => json.id === _event.idNumber? idJson = json : 1);
+                event = { description: `${idJson.name}을 획득했다!` };
+                const newItem = new Item({itemId: idJson.id, player});
+                await newItem.save();
             }
         }
         await player.save();
     }
     field.canGo.forEach((direction, i) => {
         if (direction === 1) {
+            let dir = null;
+            if(i===0) dir = '동';
+            if(i===1) dir = '서';
+            if(i===2) dir = '남';
+            if(i===3) dir = '북';
             actions.push({
                 url: "/action",
-                text: i,
+                text: dir,
                 params: { direction: i, action: "move" }
             });
         }

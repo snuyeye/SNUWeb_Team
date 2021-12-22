@@ -48,6 +48,29 @@
     <br>
     -----------------
 </div>
+<br>
+<hr>
+<br>
+<div id="battle">
+    -----Monster Status-----
+    <br>
+    HP: <span id="HP"> 5 / 5</span>
+    <br>
+    STR: <span id="STR"> 5</span>
+    <br>
+    DEF: <span id="DEF"> 5</span>
+    <br>
+    EXP: <span id="EXP"> 1</span>
+    <br>
+    -----------------
+    <div id="control">
+        <button value="0">동</button>
+        <button value="1">서</button>
+        <button value="2">남</button>
+        <button value="3">북</button>
+    </div>
+</div>
+
 
 <script>
 
@@ -108,6 +131,24 @@
             $('#DEF').text(`${player.def}`)
             $('#LEVEL').text(`${player.level}`)
             $('#EXP').text(`${player.exp} / ${player.maxExp}`)
+
+            $('#control').html('');
+            req.actions.forEach((action) => {
+                const dom = $('<button></button>');
+                dom.text(action.text);
+                dom.bind('click', function () {
+                    sendAction(action.url, action.params);
+                });
+
+                $('#control').append(dom);
+            })
+
+            $('#HP').text(`${player.HP} / ${player.maxHP}`)
+            $('#STR').text(`${player.str}`)
+            $('#DEF').text(`${player.def}`)
+            $('#LEVEL').text(`${player.level}`)
+            $('#EXP').text(`${player.exp} / ${player.maxExp}`)
+
         });
 
     }
