@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const Monster = require('./Monster');
+const fs = require("fs");
+
+mongoose.connect(
+    "mongodb+srv://test0:test0@cluster0.flaec.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+);
+
+const battleData = JSON.parse(fs.readFileSync(__dirname + "/../Datas/monsters.json"));
+
+const init = async () => {
+    await Monster.deleteMany();
+
+    battleData.data.forEach(json => {
+        const monster = new Monster({name: json.name, HP: json.hp});
+        monster.save();
+    })
+
+    console.log('completed');
+}
+init();
+
