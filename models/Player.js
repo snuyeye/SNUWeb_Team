@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     name: String,
     key: String,
+    resetCount : Number,
 
     level: { type: Number, default: 1 },
 
@@ -38,6 +39,11 @@ schema.methods.incrementEXP = function (val) {
         this.maxHP +=1;
         this.HP +=1;
     }
+};
+
+schema.methods.incrementCOUNT = function () {
+  this.resetCount += 1;
+  return this.resetCount;
 };
 
 const Player = mongoose.model("Player", schema);
