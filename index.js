@@ -49,13 +49,12 @@ app.post("/signup", async (req, res) => {
 
     const player = new Player({
         name,
-        maxHP: Math.round(10 * Math.random() + 5),
-        HP: Math.round(10 * Math.random() + 5),
-        str: Math.round(4 * Math.random() + 3),
-        def: Math.round(4 * Math.random() + 3),
-        resetCount: 0,
+        maxHP: 10,
+        HP: 10,
+        str: 5,
+        def: 5,
         x: 0,
-        y: -1
+        y: 0
     });
 
 
@@ -69,7 +68,6 @@ app.post("/signup", async (req, res) => {
 
 app.post("/action", authentication, async (req, res) => {
     const { action } = req.body;
-    console.log("action:", req.body);
     const player = req.player;
     let monster = null;
     let event = null;
@@ -77,22 +75,40 @@ app.post("/action", authentication, async (req, res) => {
     let field = null;
     let actions = [];
     let battleActions = [];
+
+
     if (action === "query") {
         field = mapManager.getField(req.player.x, req.player.y);
     } else if (action === "fight") {
-        const {fightNumber, monster} = req.body;
+        let {fightNumber, monster} = req.body;
         fightNumber++;
-        player.hp -= monster.str * 0.2;
-        monster.hp -= player.str * 1.0;
+        player.hp -= parseFloat(monster.str) / parseFloat(player.def);
+        currentMonsterHP -= parseFloat(player.str) / parseFloat(monster.def) * 3;//뒤에 붙는 숫자로 난이도 조절
         if(monster.hp <= 0) {
+            monster.hp = 0;
+            monster.str = 0;
             battleEvent = {description: `${monster.name}를 처치했다!`};
-            player.exp += monster.exp;
+            player.exp += parseFloat(monster.exp);
+            battleCheck = 0;
         }
-        battleActions.push({
-            url: "/action",
-            text: '공격!',
-            params: { fightNumber: fightNumber, action: "fight" }
-        })
+        if(player.hp <= 0) {
+            battleCheck = 0;
+            player.x = 0;
+            player.y = 0;
+            player.exp = 0;
+            player.HP = player.maxHP;
+            const numItems = player.items.length;
+            parseInt(Math.random()*numItems);
+            // TODO: 인벤토리 랜덤드랍
+            battleEvent = {description: `${monster.name}의 공격으로 사망했다...`};
+        }
+        if(battleCheck === 1) {
+            battleActions.push({
+                url: "/action",
+                text: '공격!',
+                params: { fightNumber: fightNumber, action: "fight" }
+            })
+        }
         if (fightNumber > 10 || player.hp<0.2*player.maxHP) {
             battleActions.push({
                 url: "/action",
@@ -101,22 +117,9 @@ app.post("/action", authentication, async (req, res) => {
             })
         }
         await player.save();
-        await monster.save();
     } else if(action === "run") {
-
-    } else if (action === "restat") {
-        field = mapManager.getField(0, -1);
-        player.maxHP = Math.round(10 * Math.random() + 5);
-        player.str = Math.round(4 * Math.random() + 3);
-        player.def = Math.round(4 * Math.random() + 3);
-        player.HP = player.maxHP;
-        const resetCount = player.incrementCOUNT();
-        event = {
-        title: "",
-        description: `스탯이 재분배되었습니다. ( 재분배 가능횟수 : ${resetCount}/5 ) `
-        };
-
-        await player.save();
+        battleEvent = {description: `${monster.name}로부터 도망쳤다!`};
+        battleCheck = 0;
     } else if (action === "move") {
         const direction = parseInt(req.body.direction, 0); // 0 동. 1 서 . 2 남. 3 북.
         let x = req.player.x;
@@ -147,61 +150,59 @@ app.post("/action", authentication, async (req, res) => {
             let cumNum = 0;
             let _event = 0;
             let i = 0;
-            for (i=0;i<events.length;i++) {
-                //let cumNum = parseFloat(events[i].percent);
-                _event = events[i];
-                console.log(field);
-                if (eventPercentage < _event.percent) {
-                    let idJson = null;
-                    if (_event.type === 'event') {
-                        eventData.data.forEach(json => {
-                            if(json.id === _event.idNumber){
-                                event = {description: json.content};
-                                idJson = json;
-                            } else{
-                                event = 1;
+            if (i === events.length){
+                _event = 0;
+                event = { description: "아무일도 일어나지 않았다." };
+            } else {
+                for (i=0;i<events.length;i++){
+                    cumNum = parseFloat(events[i].percent);
+                    if (eventPercentage < cumNum) {
+                        _event = events[i];
+                        let idJson = null;
+                        if (_event.type === 'event') {
+                            eventData.data.forEach(json => {
+                                if(json.id === _event.idNumber){
+                                    event = {description: json.content};
+                                    idJson = json;
+                                }
+                            })
+                            if (Object.keys(idJson)[2] === "hp"){
+                                player.incrementHP(idJson.hp);
+                                if(player.HP <= 0){
+                                    player.x = 0;
+                                    player.y = 0;
+                                    player.exp = 0;
+                                    player.HP = player.maxHP;
+                                }
+                            } else if (Object.keys(idJson)[2] === "str") {
+                                player.incrementSTR(idJson.str);
+                            } else if (Object.keys(idJson)[2] === "exp") {
+                                player.incrementEXP(idJson.exp);
                             }
-                        })
-                        if (Object.keys(idJson)[2] === "hp"){
-                            player.incrementHP(idJson.hp);
-                            if(player.HP <= 0){
-                                player.x = 0;
-                                player.y = 0;
-                                player.exp = 0;
-                                player.HP = player.maxHP;
-                            }
-                        } else if (Object.keys(idJson)[2] === "str") {
-                            player.incrementSTR(idJson.str);
-                        } else if (Object.keys(idJson)[2] === "exp") {
-                            player.incrementEXP(idJson.exp);
-                        }
-                    } else if (_event.type === 'battle') {
-                        battleData.data.forEach(json => {
-                            if (json.id === _event.idNumber) {
-                                event = {description: json.content};
-                                monster = json;
-                                if (monster.hp >= 0) {
+                        } else if (_event.type === 'battle') {
+                            battleData.data.forEach(json => {
+                                if (json.id === _event.idNumber) {
+                                    monster = json;
                                     battleEvent = {description: `야생의 ${monster.name}가 나타났다!`};
-                                    let i = 0
                                     battleActions.push({
                                         url: "/action",
                                         text: '공격!',
-                                        params: {fightNumber: i, action: "fight", monster: monster}
+                                        params: {fightNumber: 0, action: "fight", monster: monster}
                                     })
                                 }
-                            }
-                        })
-                    } else if (_event.type === 'item') {
-                        let idJson = '';
-                        itemData.data.forEach(json => json.id === _event.idNumber ? idJson = json : 1);
-                        event = {description: `${idJson.name}을 획득했다!`};
-                        const newItem = new Item({itemId: idJson.id, player});
-                        await newItem.save();
+                            })
+                        } else if (_event.type === 'item') {
+                            let idJson = '';
+                            itemData.data.forEach(json => json.id === _event.idNumber ? idJson = json : 1);
+                            event = {description: `${idJson.name}을 획득했다!`};
+                            const newItem = new Item({itemId: idJson.id, player});
+                            await newItem.save();
+                        }
+                        break;
+                    } else {
+                        _event = 0;
+                        event = { description: "아무일도 일어나지 않았다." };
                     }
-                    break;
-                } else {
-                    _event = 0;
-                    event = { description: "아무일도 일어나지 않았다." };
                 }
             }
         }
@@ -220,14 +221,13 @@ app.post("/action", authentication, async (req, res) => {
                 params: { direction: i, action: "move" }
             });
         }
-    })
-
+    });
     const items = await Item.find({ player });
     let itemsTotal = [];
-    console.log(items)
+    //console.log(items)
     items.forEach(item => itemData.data.forEach(eachItem => eachItem.id === item.itemId? itemsTotal.push(eachItem): 1))
-    console.log(itemsTotal)
-    return res.send({ player, field, event, actions, battleActions, itemsTotal, battleEvent, monster});
+    //console.log(itemsTotal)
+    return res.send({ player, field, event, actions, itemsTotal, battleEvent, monster, battleActions});
 
 });
 
