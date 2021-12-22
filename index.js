@@ -68,14 +68,41 @@ app.post("/signup", async (req, res) => {
 
 app.post("/action", authentication, async (req, res) => {
     const { action } = req.body;
+    console.log("action:", req.body);
     const player = req.player;
     let monster = null;
     let event = null;
     let battleEvent = null;
     let field = null;
     let actions = [];
+    let battleActions = [];
     if (action === "query") {
         field = mapManager.getField(req.player.x, req.player.y);
+    } else if (action === "fight") {
+        const {fightNumber, monster} = req.body;
+        fightNumber++;
+        player.hp -= monster.str * 0.2;
+        monster.hp -= player.str * 1.0;
+        if(monster.hp <= 0) {
+            battleEvent = {description: `${monster.name}를 처치했다!`};
+            player.exp += monster.exp;
+        }
+        battleActions.push({
+            url: "/action",
+            text: '공격!',
+            params: { fightNumber: fightNumber, action: "fight" }
+        })
+        if (fightNumber > 10 || player.hp<0.2*player.maxHP) {
+            battleActions.push({
+                url: "/action",
+                text: '도망가자!',
+                params: { fightNumber: fightNumber, action: "run" }
+            })
+        }
+        await player.save();
+        await monster.save();
+    } else if(action === "run") {
+
     } else if (action === "move") {
         const direction = parseInt(req.body.direction, 0); // 0 동. 1 서 . 2 남. 3 북.
         let x = req.player.x;
@@ -112,7 +139,7 @@ app.post("/action", authentication, async (req, res) => {
             } else {
                 for (i=0;i<events.length;i++){
                     cumNum = parseFloat(events[i].percent);
-                    if (eventRandom < cumNum) {
+                    if (eventPercentage < cumNum) {
                         _event = events[i];
                         let idJson = null;
                         if (_event.type === 'event') {
@@ -142,9 +169,15 @@ app.post("/action", authentication, async (req, res) => {
                                 if (json.id === _event.idNumber) {
                                     event = {description: json.content};
                                     monster = json;
-                                    battleEvent = {description: `야생의 ${monster.name}가 나타났다!`};
-                                } else {
-                                    event = 1;
+                                    if (monster.hp >= 0) {
+                                        battleEvent = {description: `야생의 ${monster.name}가 나타났다!`};
+                                        let i = 0
+                                        battleActions.push({
+                                            url: "/action",
+                                            text: '공격!',
+                                            params: {fightNumber: i, action: "fight", monster: monster}
+                                        })
+                                    }
                                 }
                             })
                         } else if (_event.type === 'item') {
@@ -177,13 +210,14 @@ app.post("/action", authentication, async (req, res) => {
                 params: { direction: i, action: "move" }
             });
         }
-    });
+    })
+
     const items = await Item.find({ player });
     let itemsTotal = [];
     console.log(items)
     items.forEach(item => itemData.data.forEach(eachItem => eachItem.id === item.itemId? itemsTotal.push(eachItem): 1))
     console.log(itemsTotal)
-    return res.send({ player, field, event, actions, itemsTotal, battleEvent, monster});
+    return res.send({ player, field, event, actions, battleActions, itemsTotal, battleEvent, monster});
 
 });
 
