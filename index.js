@@ -133,65 +133,61 @@ app.post("/action", authentication, async (req, res) => {
             let cumNum = 0;
             let _event = 0;
             let i = 0;
-            if (i === events.length){
-                _event = 0;
-                event = { description: "아무일도 일어나지 않았다." };
-            } else {
-                for (i=0;i<events.length;i++){
-                    cumNum = parseFloat(events[i].percent);
-                    if (eventPercentage < cumNum) {
-                        _event = events[i];
-                        let idJson = null;
-                        if (_event.type === 'event') {
-                            eventData.data.forEach(json => {
-                                if(json.id === _event.idNumber){
-                                    event = {description: json.content};
-                                    idJson = json;
-                                } else{
-                                    event = 1;
-                                }
-                            })
-                            if (Object.keys(idJson)[2] === "hp"){
-                                player.incrementHP(idJson.hp);
-                                if(player.HP <= 0){
-                                    player.x = 0;
-                                    player.y = 0;
-                                    player.exp = 0;
-                                    player.HP = player.maxHP;
-                                }
-                            } else if (Object.keys(idJson)[2] === "str") {
-                                player.incrementSTR(idJson.str);
-                            } else if (Object.keys(idJson)[2] === "exp") {
-                                player.incrementEXP(idJson.exp);
+            for (i=0;i<events.length;i++) {
+                //let cumNum = parseFloat(events[i].percent);
+                _event = events[i];
+                console.log(field);
+                if (eventPercentage < _event.percent) {
+                    let idJson = null;
+                    if (_event.type === 'event') {
+                        eventData.data.forEach(json => {
+                            if(json.id === _event.idNumber){
+                                event = {description: json.content};
+                                idJson = json;
+                            } else{
+                                event = 1;
                             }
-                        } else if (_event.type === 'battle') {
-                            battleData.data.forEach(json => {
-                                if (json.id === _event.idNumber) {
-                                    event = {description: json.content};
-                                    monster = json;
-                                    if (monster.hp >= 0) {
-                                        battleEvent = {description: `야생의 ${monster.name}가 나타났다!`};
-                                        let i = 0
-                                        battleActions.push({
-                                            url: "/action",
-                                            text: '공격!',
-                                            params: {fightNumber: i, action: "fight", monster: monster}
-                                        })
-                                    }
-                                }
-                            })
-                        } else if (_event.type === 'item') {
-                            let idJson = '';
-                            itemData.data.forEach(json => json.id === _event.idNumber ? idJson = json : 1);
-                            event = {description: `${idJson.name}을 획득했다!`};
-                            const newItem = new Item({itemId: idJson.id, player});
-                            await newItem.save();
+                        })
+                        if (Object.keys(idJson)[2] === "hp"){
+                            player.incrementHP(idJson.hp);
+                            if(player.HP <= 0){
+                                player.x = 0;
+                                player.y = 0;
+                                player.exp = 0;
+                                player.HP = player.maxHP;
+                            }
+                        } else if (Object.keys(idJson)[2] === "str") {
+                            player.incrementSTR(idJson.str);
+                        } else if (Object.keys(idJson)[2] === "exp") {
+                            player.incrementEXP(idJson.exp);
                         }
-                        break;
-                    } else {
-                        _event = 0;
-                        event = { description: "아무일도 일어나지 않았다." };
+                    } else if (_event.type === 'battle') {
+                        battleData.data.forEach(json => {
+                            if (json.id === _event.idNumber) {
+                                event = {description: json.content};
+                                monster = json;
+                                if (monster.hp >= 0) {
+                                    battleEvent = {description: `야생의 ${monster.name}가 나타났다!`};
+                                    let i = 0
+                                    battleActions.push({
+                                        url: "/action",
+                                        text: '공격!',
+                                        params: {fightNumber: i, action: "fight", monster: monster}
+                                    })
+                                }
+                            }
+                        })
+                    } else if (_event.type === 'item') {
+                        let idJson = '';
+                        itemData.data.forEach(json => json.id === _event.idNumber ? idJson = json : 1);
+                        event = {description: `${idJson.name}을 획득했다!`};
+                        const newItem = new Item({itemId: idJson.id, player});
+                        await newItem.save();
                     }
+                    break;
+                } else {
+                    _event = 0;
+                    event = { description: "아무일도 일어나지 않았다." };
                 }
             }
         }
