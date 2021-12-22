@@ -22,9 +22,9 @@ class MapManager extends Manager {
             this.fields[`${arrValue.fields[0]}_${arrValue.fields[1]}`] = {
                 x: arrValue.fields[0],
                 y: arrValue.fields[1],
-                description: arrValue.fields[3],
+                description: arrValue.fields[3] + " : " + arrValue.fields[4],
                 canGo: arrValue.fields[2],
-                events: arrValue.fields[4]
+                events: arrValue.events
             };
         });
     }
