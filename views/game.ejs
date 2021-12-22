@@ -25,10 +25,6 @@
 <div id="game"></div>
 <div id="event_result"></div>
 <div id="control">
-<div>
-    <button value="-1" class="arrow2 restat">스탯<br />재분배</button>
-</div>
-<div>
     <button value="0">동</button>
     <button value="1">서</button>
     <button value="2">남</button>
@@ -56,6 +52,7 @@
 <hr>
 <br>
 <div id="battle">
+    <div id="battleMessage"></div>
     -----Monster Status-----
     <br>
     HP: <span id="monsterHP"> 5 / 5</span>
@@ -75,7 +72,6 @@
 
 
 <script>
-
     const sendAction = (url, params = {}) => {
         $.ajax({
             url : "/action",
@@ -87,7 +83,6 @@
             data: $.param(params),
         }).done((req) => {
             const { player, field, event, actions, battleActions, itemsTotal, battleEvent, monster } = req;
-
             $('#game').text(field.description);
             $('#position').text(`(${field.x},${field.y})`);
             const x = field.x;
@@ -110,8 +105,6 @@
                 }
             }
             $('#map').text(map);
-
-
             $('#control').html('');
             req.actions.forEach((action) => {
                 const dom = $('<button></button>');
@@ -119,25 +112,8 @@
                 dom.bind('click', function () {
                     sendAction(action.url, action.params);
                 });
-
                 $('#control').append(dom);
             })
-            
-            if (x === 0 && y === -1) {
-                    $('button[value="-1"]').unbind('click');
-                    $('button[value="-1"]').show();
-                    if (player.resetCount > 4) {
-                        $('button[value="-1"]').hide();
-                    }
-                    $('button[value="-1"]').bind('click', function () {
-                        sendAction('restat');
-                    })
-            } else {
-                    $('button[value="-1"]').hide();
-                    $('button[value="-1"]').unbind('click');
-            }
-            
-
             if (event) {
                 $('#event_result').text(event.description);
             } else {
@@ -148,36 +124,30 @@
             $('#DEF').text(`${player.def}`)
             $('#LEVEL').text(`${player.level}`)
             $('#EXP').text(`${player.exp} / ${player.maxExp}`)
-
             $('#battleControl').html('');
-            req.battleActions.forEach((action) => {
-                const dom = $('<button></button>');
-                dom.text(action.text);
-                dom.bind('click', function () {
-                    sendAction(action.url, action.params);
-                });
-
-                $('#battleControl').append(dom);
-            })
-
-            $('#monsterHP').text(`${monster.hp} / ${monster.maxHP}`)
-            $('#monsterSTR').text(`${monster.str}`)
-            $('#monsterDEF').text(`${monster.def}`)
-            $('#monsterEXP').text(`${monster.exp}`)
-
+            if(battleEvent){
+                $('#battleMessage').text(battleEvent.description);
+                $('#monsterHP').text(`${monster.hp} / ${monster.maxHP}`)
+                $('#monsterSTR').text(`${monster.str}`)
+                $('#monsterDEF').text(`${monster.def}`)
+                $('#monsterEXP').text(`${monster.exp}`)
+                $('#battleControl').html('');
+                req.battleActions.forEach((action) => {
+                    const dom = $('<button></button>');
+                    dom.text(action.text);
+                    dom.bind('click', function () {
+                        sendAction(action.url, action.params);
+                    });
+                    $('#battleControl').append(dom);
+                })
+            }
         });
-
     }
     const key = localStorage.getItem('_key');
     if (!key) {
         location.href = "/";
     }
-
     sendAction("/action", {action: 'query'});
-
-
-
 </script>
 </body>
 </html>
-
