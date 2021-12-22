@@ -82,7 +82,7 @@
             //data: `action=${action} & direction=${params.direction}` //
             data: $.param(params),
         }).done((req) => {
-            const { player, field, event, actions, itemsTotal, battleEvent, monster } = req;
+            const { player, field, event, actions, battleActions, itemsTotal, battleEvent, monster } = req;
 
             $('#game').text(field.description);
             $('#position').text(`(${field.x},${field.y})`);
@@ -130,21 +130,21 @@
             $('#LEVEL').text(`${player.level}`)
             $('#EXP').text(`${player.exp} / ${player.maxExp}`)
 
-            $('#control').html('');
-            req.actions.forEach((action) => {
+            $('#battleControl').html('');
+            req.battleActions.forEach((action) => {
                 const dom = $('<button></button>');
                 dom.text(action.text);
                 dom.bind('click', function () {
                     sendAction(action.url, action.params);
                 });
 
-                $('#control').append(dom);
+                $('#battleControl').append(dom);
             })
 
-            $('#monsterHP').text(`${monster.hp} / ${player.hp}`)
-            $('#monsterSTR').text(`${player.str}`)
-            $('#monsterDEF').text(`${player.def}`)
-            $('#monsterEXP').text(`${player.exp} / ${player.maxExp}`)
+            $('#monsterHP').text(`${monster.hp} / ${monster.maxHP}`)
+            $('#monsterSTR').text(`${monster.str}`)
+            $('#monsterDEF').text(`${monster.def}`)
+            $('#monsterEXP').text(`${monster.exp}`)
 
         });
 
