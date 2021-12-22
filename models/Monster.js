@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const schema = new Schema({
+const monsterSchema = new Schema({
     name: String,
-    maxHP: { type: Number, default: 10 },
-    HP: { type: Number, default: 10 },
+    HP: Number,
 });
 
-const Monster = mongoose.model("Monster", schema);
+const Monster = mongoose.model("Monster", monsterSchema);
 
-module.exports = {
-    Monster
-};
+module.exports = Monster;
