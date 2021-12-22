@@ -54,7 +54,7 @@ app.post("/signup", async (req, res) => {
         str: 5,
         def: 5,
         x: 0,
-        y: 0
+        y: -1
     });
 
 
