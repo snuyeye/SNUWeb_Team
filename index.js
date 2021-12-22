@@ -75,6 +75,7 @@ app.post("/action", authentication, async (req, res) => {
     let field = null;
     let actions = [];
     let battleActions = [];
+    let battleCheck = 0;
 
 
     if (action === "query") {
@@ -208,6 +209,11 @@ app.post("/action", authentication, async (req, res) => {
         }
         await player.save();
     }
+
+    let x = req.player.x;
+    let y = req.player.y;
+    field = mapManager.getField(x, y);
+
     field.canGo.forEach((direction, i) => {
         if (direction === 1) {
             let dir = null;
